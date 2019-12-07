@@ -1,0 +1,29 @@
+@import 'const/colors';
+@import 'const/dimensions';
+@import 'const/fonts';
+
+html,
+body {
+  background: $dark-purple;
+  border: 0;
+  color: $white;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  padding: $grid * 6;
+  margin: 0 auto;
+  max-width: 100vh;
+}
+
+h1 {
+  @include heading-font;
+}
+
+p {
+  @include body-font;
+}
