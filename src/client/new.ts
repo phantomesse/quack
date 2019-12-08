@@ -13,7 +13,7 @@ function createSession(): void {
   let request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     if (request.readyState === 4) {
-      window.location.href = '/join/?sessionName=' + request.response;
+      window.location.href = '/play?sessionName=' + request.response;
     }
   };
   request.open('POST', `/new?difficulty=${difficulty}&rounds=${rounds}`, true);

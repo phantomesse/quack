@@ -50,6 +50,17 @@ app.get('/join', function(request, response) {
   response.render('pages/join-first-player');
 });
 
+app.get('/play', function(request, response) {
+  let sessionName = request.query.sessionName;
+  if (!sessions.sessionNames.includes(sessionName)) {
+    response.redirect('/');
+    return;
+  }
+
+  let session = sessions.getSession(sessionName);
+  response.render('pages/play');
+});
+
 app.listen(port, function() {
   console.log(`Quack available at http://localhost:${port}!`);
 });

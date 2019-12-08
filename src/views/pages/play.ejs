@@ -1,0 +1,15 @@
+<%- include('../partials/header', {title: 'Play', name: 'play'}) %>
+
+<section id="waiting" class="hidden">
+  <%- include('../partials/instructions') %>
+  <p class="waiting">waiting<span>.</span><span>.</span><span>.</span></p>
+</section>
+
+<section id="join">
+  <%- include('../partials/instructions') %>
+  <button class="buzzer">begin</button>
+</section>
+
+<script src="js/play.js"></script>
+
+<%- include('../partials/footer') %>

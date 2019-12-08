@@ -1,0 +1,16 @@
+& {
+  @include h1-font;
+  $diameter: 50vh;
+  background: $darker-purple;
+  border-radius: $diameter / 2;
+  display: block;
+  height: $diameter;
+  margin: auto;
+  width: $diameter;
+}
+
+&:active,
+&:hover {
+  background: $dark-pink;
+  color: $white;
+}
