@@ -59,7 +59,7 @@ app.get('/play', function(request, response) {
   }
 
   let session = sessions.getSession(sessionName);
-  response.render('pages/play');
+  response.render('pages/play', { sessionName: sessionName });
 });
 
 app.listen(port, function() {

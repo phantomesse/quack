@@ -3,15 +3,18 @@
 <section id="waiting" class="hidden">
   <%- include('../partials/instructions') %>
   <p class="waiting">waiting<span>.</span><span>.</span><span>.</span></p>
+  <p>session: <%= sessionName %></p>
 </section>
 
 <section id="join" class="hidden">
   <%- include('../partials/instructions') %>
   <button class="buzzer">begin</button>
+  <p>session: <%= sessionName %></p>
 </section>
 
-<section id="quack">
+<section id="quack" class="">
   <button class="buzzer">quack</button>
+  <p>session: <%= sessionName %></p>
 </section>
 
 <script src="js/play.js"></script>
