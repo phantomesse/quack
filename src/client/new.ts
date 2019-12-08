@@ -1,3 +1,17 @@
+let labels = document.querySelectorAll('label');
+
+for (let label of labels) {
+  label.addEventListener(
+    isTouchDevice ? 'touchstart' : 'mousedown',
+    function() {
+      label.classList.add('active');
+    }
+  );
+  label.addEventListener(isTouchDevice ? 'touchend' : 'mouseup', function() {
+    label.classList.remove('active');
+  });
+}
+
 function goBackToLobby(): void {
   window.location.href = '/';
 }

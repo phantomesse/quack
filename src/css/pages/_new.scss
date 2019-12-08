@@ -63,6 +63,10 @@ label {
     border-radius: $grid;
     display: block;
     font-weight: 400;
-    padding: $grid / 2 $grid * 3 / 2;
+    padding: $grid $grid * 3 / 2;
+  }
+
+  &.active span {
+    background: $darker-purple;
   }
 }
