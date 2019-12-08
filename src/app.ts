@@ -9,6 +9,7 @@ const port = process.env.PORT || 1337;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('build/public'));
+app.use(express.static('src/sounds'));
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 
