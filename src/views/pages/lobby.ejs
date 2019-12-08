@@ -6,6 +6,12 @@
   new session
 </button>
 
+<% for (var sessionName of sessionNames) { %>
+<button>
+  <%= sessionName %>
+</button>
+<% } %>
+
 <script src="js/lobby.js"></script>
 
 <%- include('../partials/footer') %>

@@ -3,17 +3,19 @@ function goBackToLobby(): void {
 }
 
 function createSession(): void {
-  let difficulty: String = document
+  let difficulty = document
     .querySelector('input[name="difficulty"]:checked')
     .getAttribute('value');
-  let rounds: number = parseInt(
-    document
-      .querySelector('input[name="rounds"]:checked')
-      .getAttribute('value'),
-    10
-  );
-  console.log({
-    difficulty: difficulty,
-    rounds: rounds
-  });
+  let rounds = document
+    .querySelector('input[name="rounds"]:checked')
+    .getAttribute('value');
+
+  let request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    if (request.readyState === 4) {
+      window.location.href = '/join/?sessionName=' + request.response;
+    }
+  };
+  request.open('POST', `/new?difficulty=${difficulty}&rounds=${rounds}`, true);
+  request.send();
 }
