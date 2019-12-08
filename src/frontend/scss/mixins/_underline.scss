@@ -1,0 +1,17 @@
+@mixin underline($left-offset: 0) {
+  display: block;
+  position: relative;
+
+  &::before {
+    $height: $grid / 2;
+    background: $pink;
+    border-radius: $grid / 2;
+    bottom: -$height;
+    content: '';
+    display: block;
+    height: $height;
+    left: $left-offset;
+    position: absolute;
+    width: calc(100% - #{$left-offset});
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "quack",
+  "version": "1.0.0",
+  "description": "A word guessing game with a ducky element.",
+  "author": "Lauren Zou",
+  "engines": {
+    "node": "9.10.1"
+  },
+  "scripts": {
+    "prestart": "gulp build",
+    "start": "node ./build/server.js",
+    "dev": "npm run prestart; gulp watch & nodemon ./build/server.js",
+    "clean": "gulp clean"
+  },
+  "dependencies": {
+    "cssnano": "^4.1.10",
+    "del": "^5.1.0",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-file-include": "^2.1.1",
+    "gulp-htmlclean": "^2.7.22",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "node-sass": "^4.13.0",
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/socket.io": "^2.1.4",
+    "nodemon": "^2.0.1"
+  }
+}

@@ -1,0 +1,21 @@
+$_font-family: 'Rubik', sans-serif;
+
+@mixin _font($font-size, $font-weight: 400, $line-height: $font-size) {
+  font: $font-weight $font-size $_font-family;
+  line-height: $line-height;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+@mixin body-font {
+  @include _font($grid * 2, 300, $grid * 3);
+}
+
+@mixin h1-font {
+  @include _font($grid * 4, 500);
+}
+
+@mixin button-font {
+  @include _font($grid * 3, 500);
+}
