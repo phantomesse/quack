@@ -2,9 +2,16 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import sessions from './server/sessions';
 import Team from './server/team';
+import socketIo from 'socket.io';
+import { createServer, Server } from 'http';
 
 const app: express.Application = express();
-const port = process.env.PORT || 1337;
+app.set('port', process.env.PORT || 1337);
+
+let server = createServer(app).listen(app.get('port'), function() {
+  console.log(`Quack available at http://localhost:${app.get('port')}!`);
+});
+let io = socketIo.listen(server);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,27 +37,6 @@ app.post('/new', bodyParser.json(), function(request, response) {
     });
 });
 
-app.get('/join', function(request, response) {
-  let sessionName = request.query.sessionName;
-  if (!sessions.sessionNames.includes(sessionName)) {
-    response.redirect('/');
-    return;
-  }
-
-  let session = sessions.getSession(sessionName);
-  if (session.areBothTeamsConnected) {
-    response.redirect('/');
-    return;
-  }
-  if (session.isOneTeamConnected) {
-    session.team2 = new Team();
-    response.render('pages/join-second-player');
-    return;
-  }
-  session.team1 = new Team();
-  response.render('pages/join-first-player');
-});
-
 app.get('/play', function(request, response) {
   let sessionName = request.query.sessionName;
   if (!sessions.sessionNames.includes(sessionName)) {
@@ -60,8 +46,25 @@ app.get('/play', function(request, response) {
 
   let session = sessions.getSession(sessionName);
   response.render('pages/play', { sessionName: sessionName });
-});
 
-app.listen(port, function() {
-  console.log(`Quack available at http://localhost:${port}!`);
+  io.sockets.on('connection', function() {
+    console.log('someone connected in session ' + sessionName);
+
+    // if (session.teams.length === 2) {
+    //   io.sockets.emit('too many connected');
+    // }
+
+    let team = new Team();
+    session.teams.push(team);
+
+    if (session.teams.length === 1) {
+      io.sockets.emit('show waiting screen');
+    }
+
+    if (session.teams.length === 2) {
+      io.sockets.emit('show join screen');
+    }
+
+    io.sockets.on('disconnect', function() {});
+  });
 });

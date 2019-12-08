@@ -19,3 +19,32 @@ for (let buzzer of buzzers) {
     htmlElement.classList.remove('buzzer-active');
   });
 }
+
+let socket = io();
+
+socket.on('too many connected', function() {
+  window.location.href = '/';
+});
+
+socket.on('show waiting screen', function() {
+  _showSection('waiting');
+});
+
+socket.on('show join screen', function() {
+  _showSection('join');
+});
+
+function _showSection(sectionId: string) {
+  let sections = document.getElementsByTagName('section');
+  for (let section of sections) {
+    if (section.id === sectionId) {
+      if (section.classList.contains('hidden')) {
+        section.classList.remove('hidden');
+      }
+    } else {
+      if (!section.classList.contains('hidden')) {
+        section.classList.add('hidden');
+      }
+    }
+  }
+}
