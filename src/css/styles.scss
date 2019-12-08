@@ -53,7 +53,7 @@ h1 {
 
   &::before {
     $height: $grid / 2;
-    $left: $grid * 5 / 2;
+    $left: 3vh;
     background: $pink;
     border-radius: $height / 2;
     bottom: $grid / -2;
