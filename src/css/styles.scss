@@ -27,9 +27,10 @@ html {
 
 body {
   box-sizing: border-box;
-  padding: $grid * 6 $grid * 3;
   margin: 0 auto;
   max-width: 100vh;
+  overflow-x: hidden;
+  padding: $grid * 6 $grid * 3;
 
   &.lobby {
     @import 'pages/lobby';
