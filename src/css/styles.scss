@@ -4,16 +4,24 @@
 
 html,
 body {
-  background: $dark-purple;
   border: 0;
   color: $white;
   height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+html {
+  align-items: center;
+  background: $dark-purple
+    radial-gradient(circle, rgba($darker-purple, 0.5) 0%, $dark-purple 100%);
+  display: flex;
+  justify-content: center;
 
   &.buzzer-active {
-    background: $pink;
+    background: $pink
+      radial-gradient(circle, $pink 0%, $dark-pink 100%);
   }
 }
 

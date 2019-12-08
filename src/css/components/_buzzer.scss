@@ -9,7 +9,7 @@
   width: $diameter;
 }
 
-&.active {
+@at-root .buzzer-active & {
   background: $dark-pink;
   color: $white;
 }

@@ -1,18 +1,21 @@
 @import 'dimensions';
 
 $_font-family: 'Rubik', sans-serif;
+$body-font-size: 2.5vh;
 
 @mixin body-font {
-  font: 400 16px $_font-family;
-  line-height: $grid * 3;
+  $font-size: $body-font-size;
+  font: 400 $font-size $_font-family;
+  line-height: $font-size;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
 @mixin h1-font {
-  font: 500 32px $_font-family;
-  line-height: $grid * 4;
+  $font-size: $body-font-size * 2;
+  font: 500 $font-size $_font-family;
+  line-height: $font-size;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -23,8 +26,9 @@ $_font-family: 'Rubik', sans-serif;
 }
 
 @mixin button-font {
-  font: 500 24px $_font-family;
+  $font-size: $body-font-size * 3 / 2;
+  font: 500 $font-size $_font-family;
   letter-spacing: .5px;
-  line-height: $grid * 3;
+  line-height: $font-size;
   text-align: center;
 }
