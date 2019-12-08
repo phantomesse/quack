@@ -1,6 +1,6 @@
 & {
   @include h1-font;
-  $diameter: 50vh;
+  $diameter: 40vh;
   background: $darker-purple;
   border-radius: $diameter / 2;
   display: block;
@@ -9,8 +9,7 @@
   width: $diameter;
 }
 
-&:active,
-&:hover {
+&.active {
   background: $dark-pink;
   color: $white;
 }

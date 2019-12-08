@@ -7,9 +7,5 @@
   display: block;
   outline: none;
   padding: 0;
-}
-
-&:active,
-&:hover {
-  color: $pink;
+  -webkit-tap-highlight-color: transparent;
 }
