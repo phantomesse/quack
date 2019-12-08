@@ -2,6 +2,7 @@
 @import 'const/dimensions';
 @import 'const/fonts';
 @import 'mixins/button';
+@import 'mixins/toolbelt';
 @import 'mixins/underline';
 
 html,
@@ -45,4 +46,12 @@ p {
 
 button:not(.buzzer) {
   @include button;
+}
+
+button.buzzer {
+  @include buzzer;
+}
+
+.toolbelt {
+  @include toolbelt;
 }

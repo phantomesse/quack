@@ -40,8 +40,16 @@ const _frontendTsSrc = src + 'frontend/ts/**/*.ts';
 function _buildFrontendTs() {
   return gulp
     .src(_frontendTsSrc)
-    .pipe(ts(tsconfig.compilerOptions))
-    .pipe(deporder())
+    .pipe(
+      ts(tsconfig.compilerOptions).on('error', function(error) {
+        console.log(error);
+      })
+    )
+    .pipe(
+      deporder().on('error', function(error) {
+        console.log(error);
+      })
+    )
     .pipe(concat('scripts.js'))
     .pipe(terser())
     .pipe(gulp.dest(build + 'frontend'));
