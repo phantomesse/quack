@@ -1,0 +1,55 @@
+<%- include('../partials/header', {title: 'New Session', name: 'new'}) %>
+
+<%- include('../partials/instructions') %>
+
+<h2>new session</h2>
+
+<h3>difficulty</h3>
+<section class="difficulty">
+  <label class="radio">
+    <input checked type="radio" name="difficulty" value="easy" />
+    <span>easy</span>
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="difficulty" value="hard" />
+    <span>hard</span>
+  </label>
+</section>
+
+<h3>rounds</h3>
+<section class="rounds">
+  <label class="radio">
+    <input type="radio" name="rounds" value="1" />
+    <span>1</span>
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="rounds" value="2" />
+    <span>2</span>
+  </label>
+
+  <label class="radio">
+    <input checked type="radio" name="rounds" value="3" />
+    <span>3</span>
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="rounds" value="4" />
+    <span>4</span>
+  </label>
+
+  <label class="radio">
+    <input type="radio" name="rounds" value="5" />
+    <span>5</span>
+  </label>
+</section>
+
+<div class="toolbelt">
+  <button onclick="goBackToLobby()">back</button>
+  <button onclick="createSession()">ready</button>
+</div>
+
+<script src="js/new.js"></script>
+
+<%- include('../partials/footer') %>

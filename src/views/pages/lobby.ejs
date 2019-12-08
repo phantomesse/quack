@@ -1,12 +1,11 @@
 <%- include('../partials/header', {title: 'Lobby', name: 'lobby'}) %>
 
-<h1>guess the word</h1>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec ultrices nisl. Integer eu
-  fringilla dolor. Donec fringilla nunc non risus pharetra luctus vel sed risus. Ut enim diam,
-  gravida id justo sit amet, aliquet faucibus ipsum. Nunc posuere nunc nec turpis ultrices
-  tincidunt. Etiam mi nisl, maximus at dictum non, ultrices ac justo. In ultrices enim ex, in
-  mattis tellus pharetra nec. Phasellus finibus magna et ante sagittis, id rhoncus dui maximus.
-</p>
+<%- include('../partials/instructions') %>
+
+<button id="new-session-button" onclick="createNewSession()">
+  new session
+</button>
+
+<script src="js/lobby.js"></script>
 
 <%- include('../partials/footer') %>

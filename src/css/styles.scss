@@ -18,12 +18,46 @@ body {
   padding: $grid * 6;
   margin: 0 auto;
   max-width: 100vh;
+
+  &.lobby {
+    @import 'pages/lobby';
+  }
+
+  &.new {
+    @import 'pages/new';
+  }
 }
 
 h1 {
-  @include heading-font;
+  @include h1-font;
+  display: block;
+  margin: 0 auto $grid * 4;
+  position: relative;
+  width: max-content;
+
+  &::before {
+    $height: $grid / 2;
+    $left: $grid * 5 / 2;
+    background: $pink;
+    border-radius: $height / 2;
+    bottom: $grid / -2;
+    content: '';
+    display: block;
+    height: $height;
+    left: $left;
+    position: absolute;
+    width: calc(100% - #{$left});
+  }
 }
 
 p {
   @include body-font;
+}
+
+button {
+  @import 'components/button';
+}
+
+.toolbelt {
+  @import 'components/toolbelt';
 }

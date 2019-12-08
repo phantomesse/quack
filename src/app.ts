@@ -11,6 +11,10 @@ app.get('/', function(_, response) {
   response.render('pages/lobby');
 });
 
+app.get('/new', function(_, response) {
+  response.render('pages/new');
+});
+
 app.listen(port, function() {
   console.log(`Quack available at http://localhost:${port}!`);
 });

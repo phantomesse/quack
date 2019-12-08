@@ -3,17 +3,28 @@
 $_font-family: 'Rubik', sans-serif;
 
 @mixin body-font {
-  font: 300 16px $_font-family;
+  font: 400 16px $_font-family;
   line-height: $grid * 3;
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-@mixin heading-font {
+@mixin h1-font {
   font: 500 32px $_font-family;
   line-height: $grid * 4;
-  margin: 0 0 $grid * 4;
+  margin: 0;
   padding: 0;
+  text-align: center;
+}
+
+@mixin h2-font {
+  @include button-font;
+}
+
+@mixin button-font {
+  font: 500 24px $_font-family;
+  letter-spacing: .5px;
+  line-height: $grid * 3;
   text-align: center;
 }
