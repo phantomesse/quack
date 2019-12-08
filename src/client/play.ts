@@ -34,6 +34,15 @@ socket.on('show join screen', function() {
   _showSection('join');
 });
 
+socket.on('show cards screen', function(card) {
+  console.log(card);
+  _showSection('card');
+});
+
+socket.on('show buzzer screen', function() {
+  _showSection('quack');
+});
+
 function _showSection(sectionId: string) {
   let sections = document.getElementsByTagName('section');
   for (let section of sections) {
@@ -47,4 +56,9 @@ function _showSection(sectionId: string) {
       }
     }
   }
+}
+
+function startGame(): void {
+  console.log('start game');
+  socket.emit('start');
 }

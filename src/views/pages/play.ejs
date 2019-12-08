@@ -8,7 +8,7 @@
 
 <section id="join" class="hidden">
   <%- include('../partials/instructions') %>
-  <button class="buzzer">begin</button>
+  <button class="buzzer" onclick="startGame()">begin</button>
   <p>session: <%= sessionName %></p>
 </section>
 
@@ -39,7 +39,7 @@
     <span></span>
   </div>
 
-  <div class="cards">
+  <div class="cards" class="hidden">
     <div class="background-cards"></div>
     <div class="active-card">
       <span class="secret-word">secret word</span>

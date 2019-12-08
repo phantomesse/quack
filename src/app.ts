@@ -47,23 +47,29 @@ app.get('/play', function(request, response) {
   let session = sessions.getSession(sessionName);
   response.render('pages/play', { sessionName: sessionName });
 
-  io.sockets.on('connection', function() {
+  io.sockets.on('connection', function(socket) {
     console.log('someone connected in session ' + sessionName);
 
     // if (session.teams.length === 2) {
     //   io.sockets.emit('too many connected');
     // }
 
-    let team = new Team();
+    let team = new Team(socket);
     session.teams.push(team);
 
     if (session.teams.length === 1) {
-      io.sockets.emit('show waiting screen');
+      socket.emit('show waiting screen');
+    } else if (session.teams.length === 2) {
+      socket.emit('show join screen');
     }
 
-    if (session.teams.length === 2) {
-      io.sockets.emit('show join screen');
-    }
+    socket.on('start', function() {
+      console.log('start game');
+      socket.emit('show cards screen', session.nextCard);
+      session.teams
+        .filter(sessionTeam => sessionTeam !== team)[0]
+        .socket.emit('show buzzer screen');
+    });
 
     io.sockets.on('disconnect', function() {});
   });
