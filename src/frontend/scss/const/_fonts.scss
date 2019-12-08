@@ -17,5 +17,6 @@ $_font-family: 'Rubik', sans-serif;
 }
 
 @mixin button-font {
-  @include _font($grid * 3, 500);
+  @include _font($grid * 3, 500, $grid * 2);
+  letter-spacing: 0.5px;
 }

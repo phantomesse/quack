@@ -1,6 +1,7 @@
 @import 'const/colors';
 @import 'const/dimensions';
 @import 'const/fonts';
+@import 'mixins/button';
 @import 'mixins/underline';
 
 html,
@@ -20,6 +21,10 @@ html {
   background: $dark-purple
     radial-gradient(circle, rgba($darker-purple, 0.5) 0%, $dark-purple 100%);
   padding: $grid * 3;
+
+  &.buzzer-active {
+    background: $pink radial-gradient(circle, $pink 0%, $dark-pink 100%);
+  }
 }
 
 body {
@@ -36,4 +41,8 @@ h1 {
 
 p {
   @include body-font;
+}
+
+button:not(.buzzer) {
+  @include button;
 }

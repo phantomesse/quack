@@ -1,0 +1,24 @@
+@mixin _button-base {
+  background: none;
+  border: 0;
+  color: $white;
+  outline: none;
+}
+
+@mixin button {
+  @include _button-base;
+  @include button-font;
+  background: rgba($purple, 0.5);
+  border-radius: $grid;
+  padding: $grid;
+  margin: $grid * 2 0;
+
+  &.active {
+    background: rgba($dark-pink, 0.5);
+  }
+}
+
+@mixin buzzer {
+  @include _button-base;
+  @include h1-font;
+}

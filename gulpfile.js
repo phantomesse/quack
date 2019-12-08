@@ -8,6 +8,11 @@ const del = require('del');
 const ts = require('gulp-typescript');
 const tsconfig = require('./tsconfig.json');
 
+// JS dependencies.
+const concat = require('gulp-concat');
+const deporder = require('gulp-deporder');
+const terser = require('gulp-terser');
+
 // CSS dependencies.
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
@@ -36,7 +41,10 @@ function _buildFrontendTs() {
   return gulp
     .src(_frontendTsSrc)
     .pipe(ts(tsconfig.compilerOptions))
-    .pipe(gulp.dest(build + 'frontend/js'));
+    .pipe(deporder())
+    .pipe(concat('scripts.js'))
+    .pipe(terser())
+    .pipe(gulp.dest(build + 'frontend'));
 }
 
 // Build SCSS.
@@ -53,7 +61,7 @@ function _buildScss() {
       }).on('error', sass.logError)
     )
     .pipe(postcss([cssnano]))
-    .pipe(gulp.dest(build + 'frontend/css'));
+    .pipe(gulp.dest(build + 'frontend'));
 }
 
 // Copy over the word data.
