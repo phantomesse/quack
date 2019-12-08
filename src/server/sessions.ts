@@ -1,4 +1,5 @@
 import Session from './session';
+import cards from './cards';
 
 class Sessions {
   _sessions: Map<string, Session>;
@@ -12,8 +13,14 @@ class Sessions {
   }
 
   async addSession(difficulty: string, rounds: number): Promise<string> {
+    let sessionCards =
+      difficulty === 'hard' ? cards.hardCards : cards.easyCards;
+
     let sessionName = await Session.createSessionName();
-    this._sessions.set(sessionName, new Session(sessionName, rounds));
+    this._sessions.set(
+      sessionName,
+      new Session(sessionName, sessionCards, rounds)
+    );
     return sessionName;
   }
 

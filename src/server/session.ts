@@ -1,17 +1,24 @@
 import https from 'https';
 import Team from './team';
+import Card from './card';
 
 const _sessionNameGeneratorUrl = 'https://animal-username.herokuapp.com/';
 
 export default class Session {
   sessionName: string;
-  roundsLeft: number;
+  _cards: Card[];
+  _roundsLeft: number;
   team1: Team;
   team2: Team;
 
-  constructor(sessionName: string, rounds: number) {
+  constructor(sessionName: string, cards: Card[], rounds: number) {
     this.sessionName = sessionName;
-    this.roundsLeft = rounds;
+    this._cards = cards;
+    this._roundsLeft = rounds;
+  }
+
+  get nextCard(): Card {
+    return this._cards.shift();
   }
 
   get isOneTeamConnected(): boolean {

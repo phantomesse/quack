@@ -1,3 +1,7 @@
 export default class Team {
-  constructor() {}
+  points: number;
+
+  constructor() {
+    this.points = 0;
+  }
 }
