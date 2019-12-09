@@ -53,6 +53,10 @@ section {
   &#new {
     @import 'views/new';
   }
+
+  &#waiting {
+    @import 'views/waiting';
+  }
 }
 
 h1 {
