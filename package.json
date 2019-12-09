@@ -26,6 +26,7 @@
     "gulp-terser": "^1.2.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "node-sass": "^4.13.0",
+    "socket.io": "^2.3.0",
     "typescript": "^3.7.3"
   },
   "devDependencies": {

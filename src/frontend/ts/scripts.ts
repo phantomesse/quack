@@ -1,4 +1,5 @@
 // requires: buttons.js view-controller.js
 
 decorateButtons();
-let viewController = new ViewController();
+let socket = io();
+let viewController = new ViewController(socket);

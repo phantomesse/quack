@@ -1,51 +1,18 @@
-abstract class _View {
-  viewController: ViewController;
-  viewName: string;
-
-  constructor(viewController: ViewController, bodyClassName: string) {
-    this.viewController = viewController;
-    this.viewName = bodyClassName;
-  }
-}
-
-class _LobbyView extends _View {
-  constructor(viewController: ViewController) {
-    super(viewController, 'lobby');
-
-    let newSessionButton = document.getElementById('new-session-button');
-    if (newSessionButton != null) {
-      newSessionButton.addEventListener('click', function() {
-        viewController.setView(viewController.newView);
-      });
-    }
-  }
-}
-
-class _NewView extends _View {
-  constructor(viewController: ViewController) {
-    super(viewController, 'new');
-
-    let backButton = document.getElementById('back-button');
-    let readyButton = document.getElementById('ready-button');
-    if (backButton != null) {
-      backButton.addEventListener('click', function() {
-        viewController.setView(viewController.lobbyView);
-      });
-    }
-  }
-}
+// requires: views/view.js views/lobby-view.js views/new-view.js
 
 class ViewController {
   static _sections = document.getElementsByTagName('section');
 
-  lobbyView: _LobbyView;
-  newView: _NewView;
-  _views: _View[];
-  _currentView: _View;
+  socket;
+  lobbyView: LobbyView;
+  newView: NewView;
+  _views: View[];
+  _currentView: View;
 
-  constructor() {
-    this.lobbyView = new _LobbyView(this);
-    this.newView = new _NewView(this);
+  constructor(socket) {
+    this.socket = socket;
+    this.lobbyView = new LobbyView(this);
+    this.newView = new NewView(this);
     this._views = [this.lobbyView, this.newView];
 
     this._setView();
@@ -80,7 +47,7 @@ class ViewController {
     }
   }
 
-  setView(view: _View): void {
+  setView(view: View): void {
     this._currentView = view;
 
     // Update url.
