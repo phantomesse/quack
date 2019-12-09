@@ -40,6 +40,7 @@ io.sockets.on('connection', function(socket) {
       .addSession(data.difficulty, data.rounds)
       .then(function(addedSession) {
         session = addedSession;
+        session.addTeam(socket);
         io.emit(
           'update existing sessions',
           sessionsController.existingSessionIds
@@ -49,9 +50,14 @@ io.sockets.on('connection', function(socket) {
   });
 
   socket.on('join session', function(sessionId) {
-    console.log('joining ' + sessionId);
     session = sessionsController.getSession(sessionId);
+    session.addTeam(socket);
     socket.emit('update session id', session.id);
+  });
+
+  socket.on('start session', function() {
+    if (session === undefined) return;
+    session.getOtherTeam(socket).socket.emit('start session from waiting');
   });
 
   socket.on('disconnect', function() {

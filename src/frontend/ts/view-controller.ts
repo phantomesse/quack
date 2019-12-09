@@ -12,7 +12,7 @@ class ViewController {
   cardView: CardView;
 
   _views: View[];
-  _currentView: View;
+  currentView: View;
 
   constructor(socket) {
     this.socket = socket;
@@ -64,7 +64,7 @@ class ViewController {
   }
 
   setView(view: View): void {
-    this._currentView = view;
+    this.currentView = view;
 
     // Update url.
     history.pushState(null, '', '?view=' + view.viewName);

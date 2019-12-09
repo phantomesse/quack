@@ -1,0 +1,69 @@
+$card-width: 34vh;
+$card-height: $card-width * 3 / 2;
+
+.cards {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+@mixin card {
+  border-radius: $grid * 2;
+  box-sizing: border-box;
+  height: $card-height;
+  width: $card-width;
+}
+
+.active-card {
+  @include card;
+  @include h2-font;
+  background: $white;
+  color: $purple;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .secret-word {
+    background: $dark-pink;
+    border-radius: $grid * 3 $grid * 3 0 0;
+    border: $grid * 2 $white solid;
+    color: $white;
+    padding: $grid * 4 0 $grid * 3;
+  }
+
+  .taboo-words {
+    box-sizing: border-box;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: $grid * 3;
+  }
+}
+
+.background-cards {
+  @include card;
+  background: $purple;
+  opacity: 0.5;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-55%) rotate(10deg);
+
+  &::before,
+  &::after {
+    @include card;
+    background: $purple;
+    content: '';
+    display: block;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    transform: rotate(10deg);
+  }
+
+  &::before {
+    transform: rotate(-15deg);
+  }
+}
