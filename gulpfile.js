@@ -72,12 +72,6 @@ function _buildScss() {
     .pipe(gulp.dest(build + 'frontend'));
 }
 
-// Copy over the word data.
-const _dataSrc = src + 'data/*';
-function _copyData() {
-  return gulp.src(_dataSrc).pipe(gulp.dest(build + 'data'));
-}
-
 // Build HTML files.
 const _htmlSrc = src + 'frontend/**/*.html';
 function _buildHtml() {
@@ -91,6 +85,18 @@ function _buildHtml() {
     )
     .pipe(htmlclean())
     .pipe(gulp.dest(build + 'frontend'));
+}
+
+// Copy over the word data.
+const _dataSrc = src + 'data/*';
+function _copyData() {
+  return gulp.src(_dataSrc).pipe(gulp.dest(build + 'data'));
+}
+
+// Copy over sounds.
+const _soundsSrc = src + 'frontend/sounds/*';
+function _copySounds() {
+  return gulp.src(_soundsSrc).pipe(gulp.dest(build + 'frontend/sounds'));
 }
 
 // Clean build folder.
@@ -114,6 +120,7 @@ exports.build = gulp.parallel(
   _buildBackendTs,
   _buildFrontendTs,
   _buildScss,
+  _buildHtml,
   _copyData,
-  _buildHtml
+  _copySounds
 );

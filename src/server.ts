@@ -19,11 +19,24 @@ let io = socketIo.listen(server);
 io.sockets.on('connection', function(socket) {
   console.log('user connected');
 
+  socket.on('get existing sessions', function() {
+    console.log('here');
+    socket.emit(
+      'update existing sessions',
+      sessionsController.existingSessionIds
+    );
+  });
+
   socket.on('add new session', function(data) {
     sessionsController
       .addSession(data.difficulty, data.rounds)
       .then(function(session) {
         console.log(session.id);
+
+        io.emit(
+          'update existing sessions',
+          sessionsController.existingSessionIds
+        );
       });
   });
 

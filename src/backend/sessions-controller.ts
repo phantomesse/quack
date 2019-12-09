@@ -11,6 +11,12 @@ class SessionsController {
     this._sessions = new Map();
   }
 
+  // Returns existing session ids.
+  // TODO: only return sessions that you can still join.
+  get existingSessionIds(): string[] {
+    return [...this._sessions.keys()];
+  }
+
   async addSession(difficulty: string, rounds: number) {
     let id = await SessionsController._createSessionId();
     let cards =

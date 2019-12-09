@@ -13,6 +13,7 @@
   border-radius: $grid;
   padding: $grid * 3 / 2 $grid * 2;
   margin: $grid * 2 0;
+  width: max-content;
 
   &.active {
     background: rgba($dark-pink, 0.5);

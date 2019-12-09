@@ -65,6 +65,10 @@ h2 {
   @include h2-font;
   @include underline;
   margin-bottom: $grid * 2;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 p {
