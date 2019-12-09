@@ -1,4 +1,4 @@
-// requires: views/view.js views/lobby-view.js views/new-view.js
+// requires: views/view.js views/buzz-view.js views/card-view.js views/join-view.js views/lobby-view.js views/new-view.js views/waiting-view.js
 
 class ViewController {
   static _sections = document.getElementsByTagName('section');
@@ -6,6 +6,11 @@ class ViewController {
   socket;
   lobbyView: LobbyView;
   newView: NewView;
+  joinView: JoinView;
+  waitingView: WaitingView;
+  buzzView: BuzzView;
+  cardView: CardView;
+
   _views: View[];
   _currentView: View;
 
@@ -13,7 +18,18 @@ class ViewController {
     this.socket = socket;
     this.lobbyView = new LobbyView(this);
     this.newView = new NewView(this);
-    this._views = [this.lobbyView, this.newView];
+    this.joinView = new JoinView(this);
+    this.waitingView = new WaitingView(this);
+    this.buzzView = new BuzzView(this);
+    this.cardView = new CardView(this);
+    this._views = [
+      this.lobbyView,
+      this.newView,
+      this.joinView,
+      this.waitingView,
+      this.buzzView,
+      this.cardView
+    ];
 
     this._setView();
     window.onpopstate = () => this._setView();

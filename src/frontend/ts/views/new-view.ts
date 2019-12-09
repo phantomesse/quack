@@ -25,6 +25,8 @@ class NewView extends View {
         difficulty: difficulty,
         rounds: rounds
       });
+
+      viewController.setView(viewController.waitingView);
     });
   }
 }

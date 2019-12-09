@@ -4,6 +4,7 @@
   color: $white;
   cursor: pointer;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @mixin button {
@@ -21,6 +22,16 @@
 }
 
 @mixin buzzer {
+  $diameter: 40vh;
   @include _button-base;
   @include h1-font;
+  background: $dark-purple;
+  border-radius: 50%;
+  height: $diameter;
+  margin: auto;
+  width: $diameter;
+
+  @at-root .buzzer-active & {
+    background: $dark-pink;
+  }
 }

@@ -12,11 +12,14 @@ class LobbyView extends View {
     let self = this;
     viewController.socket.emit('get existing sessions');
     viewController.socket.on('update existing sessions', function(sessionIds) {
-      self._listExistingSessions(sessionIds);
+      self._listExistingSessions(viewController, sessionIds);
     });
   }
 
-  _listExistingSessions(sessionIds: string[]): void {
+  _listExistingSessions(
+    viewController: ViewController,
+    sessionIds: string[]
+  ): void {
     let existingSessionsContainer = document.getElementById(
       'existing-sessions'
     );
@@ -33,7 +36,7 @@ class LobbyView extends View {
       let button = document.createElement('button');
       button.innerText = sessionId;
       button.addEventListener('click', function() {
-        console.log('joining');
+        viewController.setView(viewController.joinView);
       });
       existingSessionsContainer.appendChild(button);
     }

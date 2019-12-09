@@ -96,7 +96,7 @@ function _copyData() {
 // Copy over sounds.
 const _soundsSrc = src + 'frontend/sounds/*';
 function _copySounds() {
-  return gulp.src(_soundsSrc).pipe(gulp.dest(build + 'frontend/sounds'));
+  return gulp.src(_soundsSrc).pipe(gulp.dest(build + 'frontend'));
 }
 
 // Clean build folder.
