@@ -1,30 +1,50 @@
 abstract class _View {
-  bodyClassName: string;
+  viewController: ViewController;
+  viewName: string;
 
-  constructor(bodyClassName: string) {
-    this.bodyClassName = bodyClassName;
+  constructor(viewController: ViewController, bodyClassName: string) {
+    this.viewController = viewController;
+    this.viewName = bodyClassName;
   }
 }
 
-class LobbyView extends _View {
-  constructor() {
-    super('lobby');
+class _LobbyView extends _View {
+  constructor(viewController: ViewController) {
+    super(viewController, 'lobby');
+
+    let newSessionButton: HTMLElement | null = document.getElementById(
+      'new-session-button'
+    );
+    if (newSessionButton != null) {
+      let viewController = this.viewController;
+      newSessionButton.addEventListener('click', function() {
+        viewController.setView(viewController.newView);
+      });
+    }
+  }
+}
+
+class _NewView extends _View {
+  constructor(viewController: ViewController) {
+    super(viewController, 'new');
   }
 }
 
 class ViewController {
-  static bodyElement: HTMLBodyElement | null = document
-    .getElementsByTagName('body')
-    .item(0);
-  static lobbyView = new LobbyView();
+  static _sections = document.getElementsByTagName('section');
 
+  lobbyView: _LobbyView;
+  newView: _NewView;
+  _views: _View[];
   _currentView: _View;
 
   constructor() {
-    let params = ViewController._params;
-    if (!params.has('view') || params.get('view') === 'lobby') {
-      this.setView(ViewController.lobbyView);
-    }
+    this.lobbyView = new _LobbyView(this);
+    this.newView = new _NewView(this);
+    this._views = [this.lobbyView, this.newView];
+
+    this._setView();
+    window.onpopstate = () => this._setView();
   }
 
   static get _params(): Map<String, String> {
@@ -39,11 +59,41 @@ class ViewController {
     return paramsMap;
   }
 
+  _setView(): void {
+    let params = ViewController._params;
+    let viewName = params.get('view');
+    if (!params.has('view')) {
+      this.setView(this.lobbyView);
+      return;
+    }
+
+    for (let view of this._views) {
+      if (view.viewName === viewName) {
+        this.setView(view);
+        return;
+      }
+    }
+  }
+
   setView(view: _View): void {
     this._currentView = view;
-    console.log('setting view');
-    if (ViewController.bodyElement != null) {
-      ViewController.bodyElement.className = view.bodyClassName;
+
+    // Update url.
+    history.pushState(null, '', '?view=' + view.viewName);
+
+    // Toggle section visibility.
+    for (let section of ViewController._sections) {
+      if (
+        section.id === view.viewName &&
+        section.classList.contains('hidden')
+      ) {
+        section.classList.remove('hidden');
+      } else if (
+        section.id !== view.viewName &&
+        !section.classList.contains('hidden')
+      ) {
+        section.classList.add('hidden');
+      }
     }
   }
 }

@@ -34,6 +34,19 @@ body {
   padding: 0;
 }
 
+section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+}
+
 h1 {
   @include h1-font;
   @include underline($grid * 3);

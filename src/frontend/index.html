@@ -12,7 +12,13 @@
 </head>
 
 <body>
-  @@include('./views/lobby.html')
+  <section id="lobby" class="hidden">
+    @@include('./views/lobby.html')
+  </section>
+
+  <section id="new" class="hidden">
+    @@include('./views/new.html')
+  </section>
 
   <script src="scripts.js"></script>
 </body>
