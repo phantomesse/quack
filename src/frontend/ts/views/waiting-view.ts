@@ -3,5 +3,6 @@
 class WaitingView extends View {
   constructor(viewController: ViewController) {
     super(viewController, 'waiting');
+    this.showSessionId();
   }
 }

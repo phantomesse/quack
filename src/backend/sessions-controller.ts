@@ -17,6 +17,10 @@ class SessionsController {
     return [...this._sessions.keys()];
   }
 
+  getSession(sessionId: string) {
+    return this._sessions.get(sessionId);
+  }
+
   async addSession(difficulty: string, rounds: number) {
     let id = await SessionsController._createSessionId();
     let cards =

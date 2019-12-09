@@ -37,6 +37,7 @@ class LobbyView extends View {
       button.innerText = sessionId;
       button.addEventListener('click', function() {
         viewController.setView(viewController.joinView);
+        viewController.socket.emit('join session', sessionId);
       });
       existingSessionsContainer.appendChild(button);
     }

@@ -3,5 +3,6 @@
 class JoinView extends View {
   constructor(viewController: ViewController) {
     super(viewController, 'join');
+    this.showSessionId();
   }
 }
