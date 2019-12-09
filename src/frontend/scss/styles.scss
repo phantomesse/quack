@@ -21,7 +21,7 @@ body {
 html {
   background: $dark-purple
     radial-gradient(circle, rgba($darker-purple, 0.5) 0%, $dark-purple 100%);
-  padding: $grid * 3;
+  padding: $grid * 6 $grid * 3 $grid * 3;
 
   &.buzzer-active {
     background: $pink radial-gradient(circle, $pink 0%, $dark-pink 100%);
@@ -45,6 +45,14 @@ section {
   &.hidden {
     display: none;
   }
+
+  &#lobby {
+    @import 'views/lobby';
+  }
+
+  &#new {
+    @import 'views/new';
+  }
 }
 
 h1 {
@@ -53,8 +61,15 @@ h1 {
   margin-bottom: $grid * 2;
 }
 
+h2 {
+  @include h2-font;
+  @include underline;
+  margin-bottom: $grid * 2;
+}
+
 p {
   @include body-font;
+  margin-bottom: $grid * 2;
 }
 
 button:not(.buzzer) {

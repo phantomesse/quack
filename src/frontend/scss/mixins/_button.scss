@@ -2,6 +2,7 @@
   background: none;
   border: 0;
   color: $white;
+  cursor: pointer;
   outline: none;
 }
 
@@ -10,7 +11,7 @@
   @include button-font;
   background: rgba($purple, 0.5);
   border-radius: $grid;
-  padding: $grid;
+  padding: $grid * 3 / 2 $grid * 2;
   margin: $grid * 2 0;
 
   &.active {

@@ -1,0 +1,46 @@
+h3 {
+  @include h2-font;
+  display: block;
+  margin: $grid 0;
+  padding-top: $grid * 2;
+}
+
+.difficulty,
+.rounds {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $grid * 3;
+}
+
+label {
+  cursor: pointer;
+  margin-right: $grid;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+
+    &:checked ~ span {
+      background: $dark-pink;
+    }
+  }
+
+  span {
+    @include body-font;
+    background: $purple;
+    border-radius: $grid;
+    display: block;
+    font-weight: 400;
+    padding: $grid $grid * 3 / 2;
+  }
+
+  &.active span {
+    background: $darker-purple;
+  }
+}

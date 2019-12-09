@@ -16,6 +16,11 @@ $_font-family: 'Rubik', sans-serif;
   @include _font($grid * 4, 500);
 }
 
+@mixin h2-font {
+  @include _font($grid * 3, 500);
+  letter-spacing: 0.5px;
+}
+
 @mixin button-font {
   @include _font($grid * 3, 500, $grid * 2);
   letter-spacing: 0.5px;

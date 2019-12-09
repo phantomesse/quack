@@ -12,11 +12,8 @@ class _LobbyView extends _View {
   constructor(viewController: ViewController) {
     super(viewController, 'lobby');
 
-    let newSessionButton: HTMLElement | null = document.getElementById(
-      'new-session-button'
-    );
+    let newSessionButton = document.getElementById('new-session-button');
     if (newSessionButton != null) {
-      let viewController = this.viewController;
       newSessionButton.addEventListener('click', function() {
         viewController.setView(viewController.newView);
       });
@@ -27,6 +24,14 @@ class _LobbyView extends _View {
 class _NewView extends _View {
   constructor(viewController: ViewController) {
     super(viewController, 'new');
+
+    let backButton = document.getElementById('back-button');
+    let readyButton = document.getElementById('ready-button');
+    if (backButton != null) {
+      backButton.addEventListener('click', function() {
+        viewController.setView(viewController.lobbyView);
+      });
+    }
   }
 }
 
